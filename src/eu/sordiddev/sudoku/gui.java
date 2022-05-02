@@ -46,9 +46,12 @@ public class gui {
 
             @Override
             public void keyReleased(KeyEvent e) {
+
                 String key = String.valueOf(e.getKeyChar());
 
                 currentpanel.setBackground(Color.cyan);
+
+
                 currentlabel.setText(key);
 
                 return;
@@ -114,7 +117,9 @@ public class gui {
                          try {
                              currentpanel.setBackground(Color.WHITE);
                          } catch (Exception exception){
-                             //damit kein nullpointer das spiel zerlegt, wenn noch kein Feld ausgewählt war
+                             //it's not a bug, it's a feature ¯\_(ツ)_/¯
+
+                             //TODO: timer starten
                          }
 
                         gridsmall.setBackground(Color.cyan);
