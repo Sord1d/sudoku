@@ -97,8 +97,10 @@ public class gui {
                  JLabel text= new JLabel();
                  text.setHorizontalAlignment(SwingConstants.CENTER);
                  text.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-                 int [][] riddle = riddles.riddles();
-                 text.setName(String.valueOf(riddle[i][j]));
+                 int [][] riddle = riddles.riddle1();
+                 if ( (int) riddle[i][j] != 0 ) {
+                     text.setName(String.valueOf(riddle[i][j]));
+                 }
                  text.setText(text.getName());
                  gridsmall.add(text, BorderLayout.CENTER);
 
