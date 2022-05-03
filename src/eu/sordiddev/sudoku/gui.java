@@ -10,10 +10,18 @@ import java.awt.event.MouseListener;
 
 public class gui {
 
-    //Initialissierung der beiden ojecte currentframe und currentlabel - sie repäsentieren das jeweils ausgewählte und den dazugehörogen text
+    //Initialisierung der beiden ojecte currentframe und currentlabel - sie repäsentieren das jeweils ausgewählte und den dazugehörogen text
     private static JLabel currentlabel;
     private static JPanel currentpanel;
 
+    //initialisierung von curreni und currentj als zwischenspeicher
+    private static int currenti;
+    private static int currentj;
+
+    //initialisierung von rätsel, lösung und lösungsmatrix
+    private static int[][] riddle = riddles.riddle1();;
+    private static int[][] solution = riddles.riddle1solution();
+    private static int[][] matrix = riddles.riddle1matrix();
 
 
 
@@ -22,15 +30,14 @@ public class gui {
         //JFrame als GUI generieren
 
         JFrame window = new JFrame();
-
-
-
-
         window.setTitle("Sudoku");
         window.setBackground(Color.WHITE);
         window.setSize(600,650);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
+
+
+
 
         //listener für die usereingabe
         KeyListener listener = new KeyListener() {
@@ -50,11 +57,23 @@ public class gui {
                 String key = String.valueOf(e.getKeyChar());
 
                 currentpanel.setBackground(Color.cyan);
-
-
                 currentlabel.setText(key);
+                System.out.println(String.valueOf(solution[currenti][currentj] )+" , " + key);
 
-                return;
+                //überprüfen ob die lösung richtig ist und die hilfsmatrix auf 1 oder 0 setzen
+
+                if (key.contains( String.valueOf(solution[currenti][currentj]))){
+                    matrix [currenti][currentj] = 1;
+                    System.out.println("test");
+                    System.out.println(matrix [currentj][currentj]);
+
+                } else {
+                    //matrix [currenti][currentj] = 0;
+                    System.out.println("test2");
+                    System.out.println(matrix [currentj][currentj]);
+                }
+
+
             }
         };
         window.addKeyListener(listener);
@@ -100,7 +119,6 @@ public class gui {
                  JLabel text= new JLabel();
                  text.setHorizontalAlignment(SwingConstants.CENTER);
                  text.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-                 int [][] riddle = riddles.riddle1();
                  if ( (int) riddle[i][j] != 0 ) {
                      text.setName(String.valueOf(riddle[i][j]));
                  }
@@ -108,6 +126,8 @@ public class gui {
                  gridsmall.add(text, BorderLayout.CENTER);
 
                  //mouse listener für hover-effekte und auswahl
+                 int finalI = i;
+                 int finalJ = j;
                  gridsmall.addMouseListener(new MouseListener() {
                      @Override
                      public void mouseClicked(MouseEvent e) {
@@ -126,6 +146,10 @@ public class gui {
                         //setzt die globalen objekte auf die des aktuellen feldes
                          currentlabel = text;
                          currentpanel = gridsmall;
+                         currenti = finalI;
+                         currentj = finalJ;
+                         System.out.println(currenti +"," + currentj);
+
                      }
 
                      @Override

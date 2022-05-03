@@ -21,6 +21,7 @@ public class riddles {
         return riddle1;
     }
 
+    //lösung
     public static int[][] riddle1solution() {
 
         //rätsel 1 - jede zeile ist ein kästchen
@@ -37,5 +38,22 @@ public class riddles {
         };
 
         return riddle1solution;
+    }
+
+    //array zur überprüfung
+
+    public static int [][] riddle1matrix () {
+        int[][] riddle1matrix = {
+                {0, 0, 1, 1, 1, 0, 0, 1, 0},
+                {1, 0, 0, 1, 1, 0, 0, 0, 1},
+                {1, 1, 0, 0, 0, 1, 1, 1, 0},
+                {1, 0, 1, 0, 1, 0, 1, 0, 1},
+                {1, 0, 1, 0, 1, 1, 1, 0, 0},
+                {0, 1, 1, 1, 0, 0, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0, 1, 1},
+                {0, 1, 1, 1, 0, 0, 0, 1, 1},
+                {1, 0, 0, 0, 0, 1, 1, 0, 1}
+        };
+        return riddle1matrix;
     }
 }
