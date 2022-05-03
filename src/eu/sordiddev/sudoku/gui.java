@@ -57,7 +57,7 @@ public class gui {
             public void keyReleased(KeyEvent e) {
 
                 String key = String.valueOf(e.getKeyChar());
-
+                //Todo überprüfen ob zahl
                 currentpanel.setBackground(Color.cyan);
                 currentlabel.setText(key);
 
@@ -94,6 +94,49 @@ public class gui {
         JPanel background = new JPanel();
         background.setLayout(new GridLayout(3,3));
         window.add(background);
+
+        //schaltfläche fürs überprüfen
+
+        JPanel check = new JPanel();
+        check.setBackground(Color.WHITE);
+
+        JLabel checktext = new JLabel("Überprüfen");
+        checktext.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+
+        MouseListener checklistener = new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            checktext.setForeground(Color.BLUE);
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            checktext.setForeground(Color.BLACK);
+            }
+        };
+
+
+        check.add (checktext);
+        check.addMouseListener(checklistener);
+
+        window.add(check,BorderLayout.SOUTH);
+
 
 
 
