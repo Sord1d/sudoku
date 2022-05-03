@@ -60,20 +60,20 @@ public class gui {
 
                 currentpanel.setBackground(Color.cyan);
                 currentlabel.setText(key);
-                System.out.println(String.valueOf(solution[currenti][currentj] )+" , " + key);
+
 
                 //überprüfen ob die lösung richtig ist und die hilfsmatrix auf 1 oder 0 setzen
+                // + einfärbern der Zahlen
 
                 if (key.contains( String.valueOf(solution[currenti][currentj]))){
+
                     matrix [currenti][currentj] = 1;
-                    //TODO: auf 1 ändern
-                    System.out.println("test");
-                    System.out.println(matrix [currentj][currentj]);
+                    currentlabel.setForeground(Color.BLUE);
 
                 } else {
-                    //matrix [currenti][currentj] = 0;
-                    System.out.println("test2");
-                    System.out.println(matrix [currentj][currentj]);
+
+                    matrix [currenti][currentj] = 0;
+                    currentlabel.setForeground(Color.RED);
                 }
 
 
@@ -151,7 +151,6 @@ public class gui {
                          currentpanel = gridsmall;
                          currenti = finalI;
                          currentj = finalJ;
-                         System.out.println(currenti +"," + currentj);
 
                      }
 
