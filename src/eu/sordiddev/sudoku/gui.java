@@ -64,7 +64,7 @@ public class gui {
 
                 //überprüfen ob die lösung richtig ist und die hilfsmatrix auf 1 oder 0 setzen
                 // + einfärbern der Zahlen
-
+                //TODO -> Überprüfung von reihe und spalte
                 if (key.contains( String.valueOf(solution[currenti][currentj]))){
 
                     matrix [currenti][currentj] = 1;
