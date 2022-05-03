@@ -9,12 +9,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class gui {
 
     //Initialisierung der beiden ojecte currentframe und currentlabel - sie repäsentieren das jeweils ausgewählte und den dazugehörogen text
     private static JLabel currentlabel;
     private static JPanel currentpanel;
+    public static JLabel[][] alllabels = new JLabel[9][9];
 
     //initialisierung von curreni und currentj als zwischenspeicher
     private static int currenti;
@@ -24,6 +26,7 @@ public class gui {
     private static int[][] riddle = riddles.riddle1();;
     private static int[][] solution = riddles.riddle1solution();
     private static int[][] matrix = riddles.riddle1matrix();
+
 
 
 
@@ -67,7 +70,7 @@ public class gui {
 
                     //überprüfung ob die Zahl mehr als ein Mal vorhanden ist
 
-                boolean check = checkNumber.check(riddle, currenti, key);
+                boolean check = checkNumber.check(riddle, currenti, currentj, key);
 
                 if (check == false){
                     currentlabel.setForeground(Color.RED);
@@ -177,6 +180,7 @@ public class gui {
         //raster zeichnen
         //großes raster
         for (int i = 0; i < 9; i++){
+            
 
             JPanel gridlarge = new JPanel();
             gridlarge.setBorder(borderlarge);
@@ -194,11 +198,19 @@ public class gui {
                  JLabel text= new JLabel();
                  text.setHorizontalAlignment(SwingConstants.CENTER);
                  text.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+                 text.setForeground(Color.BLUE);
                  if ( (int) riddle[i][j] != 0 ) {
                      text.setName(String.valueOf(riddle[i][j]));
+                     text.setForeground(Color.BLACK);
                  }
                  text.setText(text.getName());
+                 //zum globalen speicher hinzufügen
+
+                 System.out.println(i + " " + j);
+                 alllabels[i][j] = text;
                  gridsmall.add(text, BorderLayout.CENTER);
+
+
 
                  //mouse listener für hover-effekte und auswahl
                  int finalI = i;
