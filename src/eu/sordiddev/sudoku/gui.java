@@ -95,7 +95,7 @@ public class gui {
         background.setLayout(new GridLayout(3,3));
         window.add(background);
 
-        //schaltfläche fürs überprüfen
+        //schaltfläche fürs überprüfen - als jpanel, weils schöner aussieht
 
         JPanel check = new JPanel();
         check.setBackground(Color.WHITE);
@@ -106,7 +106,7 @@ public class gui {
         MouseListener checklistener = new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+            //TODO Überorüfung der Hilfsmatrix
             }
 
             @Override
