@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class gui {
 
@@ -64,6 +66,7 @@ public class gui {
 
                 if (key.contains( String.valueOf(solution[currenti][currentj]))){
                     matrix [currenti][currentj] = 1;
+                    //TODO: auf 1 ändern
                     System.out.println("test");
                     System.out.println(matrix [currentj][currentj]);
 
