@@ -56,17 +56,31 @@ public class gui {
             @Override
             public void keyReleased(KeyEvent e) {
 
-                String key = String.valueOf(e.getKeyChar());
-                //Todo überprüfen ob zahl
-                currentpanel.setBackground(Color.cyan);
-                currentlabel.setText(key);
+                //tastatureingabe abfangen und konvertieren
+                int keychar = (e.getKeyChar());
+                int key = convertKey.convert(keychar);
 
+                if (key != 0) {
+                    currentpanel.setBackground(Color.cyan);
+                    currentlabel.setText(String.valueOf(key));
+                    riddle[currenti][currentj] = key;
+
+                    //überprüfung ob die Zahl mehr als ein Mal vorhanden ist
+
+                boolean check = checkNumber.check(riddle, currenti, key);
+
+                if (check == false){
+                    currentlabel.setForeground(Color.RED);
+                }else{
+                    currentlabel.setForeground(Color.BLUE);
+                }
+
+                }
 
                 //überprüfen ob die lösung richtig ist und die hilfsmatrix auf 1 oder 0 setzen
                 // + einfärbern der Zahlen
                 //TODO -> Überprüfung von reihe und spalte
-                if (key.contains( String.valueOf(solution[currenti][currentj]))){
-
+               /* if (key.contains( String.valueOf(solution[currenti][currentj]))){
                     matrix [currenti][currentj] = 1;
                     currentlabel.setForeground(Color.BLUE);
 
@@ -74,7 +88,7 @@ public class gui {
 
                     matrix [currenti][currentj] = 0;
                     currentlabel.setForeground(Color.RED);
-                }
+                }*/
 
 
             }
