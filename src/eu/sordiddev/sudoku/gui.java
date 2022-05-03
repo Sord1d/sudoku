@@ -11,10 +11,12 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static eu.sordiddev.sudoku.checkNumber.check;
+
 public class gui {
 
     //Initialisierung der beiden ojecte currentframe und currentlabel - sie repäsentieren das jeweils ausgewählte und den dazugehörogen text
-    private static JLabel currentlabel;
+    public static JLabel currentlabel;
     private static JPanel currentpanel;
     public static JLabel[][] alllabels = new JLabel[9][9];
 
@@ -23,8 +25,7 @@ public class gui {
     private static int currentj;
 
     //initialisierung von rätsel, lösung und lösungsmatrix
-    private static int[][] riddle = riddles.riddle1();;
-    private static int[][] solution = riddles.riddle1solution();
+    private static int[][] riddle = riddles.riddle1();
     private static int[][] matrix = riddles.riddle1matrix();
 
 
@@ -63,35 +64,31 @@ public class gui {
                 int keychar = (e.getKeyChar());
                 int key = convertKey.convert(keychar);
 
-                if (key != 0) {
-                    currentpanel.setBackground(Color.cyan);
-                    currentlabel.setText(String.valueOf(key));
-                    riddle[currenti][currentj] = key;
+                if (currentlabel.getForeground() != Color.BLACK && currentlabel.getForeground()!= Color.red) {
+                    if (key != 0) {
 
-                    //überprüfung ob die Zahl mehr als ein Mal vorhanden ist
 
-                boolean check = checkNumber.check(riddle, currenti, currentj, key);
+                        currentlabel.setText(String.valueOf(key));
+                        riddle[currenti][currentj] = key;
 
-                if (check == false){
-                    currentlabel.setForeground(Color.RED);
-                }else{
-                    currentlabel.setForeground(Color.BLUE);
+                        if (key == -1) {
+                            currentlabel.setText("");
+                        }
+                        //überprüfung ob die Zahl mehr als ein Mal vorhanden ist
+
+                        boolean check = checkNumber.check(riddle, currenti, currentj, key);
+
+                        if (!check) {
+                            currentlabel.setForeground(Color.ORANGE);
+                            System.out.println(check);
+                        } else {
+                            currentlabel.setForeground(Color.BLUE);
+                            System.out.println(check);
+                        }
+
+
+                    }
                 }
-
-                }
-
-                //überprüfen ob die lösung richtig ist und die hilfsmatrix auf 1 oder 0 setzen
-                // + einfärbern der Zahlen
-                //TODO -> Überprüfung von reihe und spalte
-               /* if (key.contains( String.valueOf(solution[currenti][currentj]))){
-                    matrix [currenti][currentj] = 1;
-                    currentlabel.setForeground(Color.BLUE);
-
-                } else {
-
-                    matrix [currenti][currentj] = 0;
-                    currentlabel.setForeground(Color.RED);
-                }*/
 
 
             }
@@ -200,10 +197,10 @@ public class gui {
                  text.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
                  text.setForeground(Color.BLUE);
                  if ( (int) riddle[i][j] != 0 ) {
-                     text.setName(String.valueOf(riddle[i][j]));
+
                      text.setForeground(Color.BLACK);
+                     text.setText(String.valueOf(riddle[i][j]));
                  }
-                 text.setText(text.getName());
                  //zum globalen speicher hinzufügen
 
                  System.out.println(i + " " + j);
@@ -219,29 +216,50 @@ public class gui {
                      @Override
                      public void mouseClicked(MouseEvent e) {
 
-                         //färbt das vormals ausgewählte Feld weiß und das aktuelle blau
-
-                         try {
-                             currentpanel.setBackground(Color.WHITE);
-                         } catch (Exception exception){
-                             //it's not a bug, it's a feature ¯\_(ツ)_/¯
-
-                             //TODO: timer starten
-                         }
-
-                        gridsmall.setBackground(Color.cyan);
-                        //setzt die globalen objekte auf die des aktuellen feldes
-                         currentlabel = text;
-                         currentpanel = gridsmall;
-                         currenti = finalI;
-                         currentj = finalJ;
 
                      }
 
                      @Override
                      public void mousePressed(MouseEvent e) {
 
+                         //färbt das vormals ausgewählte Feld weiß und das aktuelle blau
 
+
+                         if (currentpanel != null) {
+                             currentpanel.setBackground(Color.WHITE);
+
+                             //TODO: timer starten
+                         }
+
+                         gridsmall.setBackground(Color.cyan);
+                         //setzt die globalen objekte auf die des aktuellen feldes
+                         currentlabel = text;
+                         currentpanel = gridsmall;
+                         currenti = finalI;
+                         currentj = finalJ;
+
+                         if (!currentlabel.getText().isEmpty() &&currentlabel.getForeground() != Color.BLACK && currentlabel.getForeground()!= Color.red) {
+                             int key = Integer.parseInt(currentlabel.getText());
+                             boolean check = checkNumber.check(riddle, currenti, currentj, key);
+                             if (!check) {
+                                 currentlabel.setForeground(Color.ORANGE);
+                             } else {
+                                 currentlabel.setForeground(Color.BLUE);
+                             }
+                         }else{
+                             //wenn es orange ist wieder blau machen
+                             for (int i=0; i<9; i++) {
+                                for (int j = 0; j<9; j++){
+                                    if (gui.alllabels[i][j].getForeground() == Color.ORANGE) {
+                                        gui.alllabels[i][j].setForeground(Color.BLUE);
+                                    } else if(gui.alllabels[i][j].getForeground() == Color.RED) {
+                                        gui.alllabels[i][j].setForeground(Color.BLACK);
+                                    }
+
+                             }
+
+                             }
+                         }
                      }
 
                      @Override

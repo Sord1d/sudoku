@@ -5,20 +5,251 @@ import java.awt.*;
 //Überprüft, ob die zahl vorhanden ist
 public class checkNumber {
 
+
+    private static boolean check = true;
+
+
     public static boolean check(int[][] riddle, int currenti, int currentj, int key) {
+
+        //wenn es orange ist wieder blau machen
+        //bzw schwarz wenn es rot ist
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+
+                if (gui.alllabels[i][j].getForeground() == Color.ORANGE) {
+                    gui.alllabels[i][j].setForeground(Color.BLUE);
+                } else if(gui.alllabels[i][j].getForeground() == Color.RED) {
+                    gui.alllabels[i][j].setForeground(Color.BLACK);
+                }
+
+
+            }
+        }
 
         //im kästchen
         int keys = 0;
-        boolean check = false;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (riddle[currenti][j] == key) {
+                    keys++;
+                    if (keys > 1) {
+                        paint(currenti, j, key, riddle);
 
-        for (int j = 0; j<9; j++){
-            if (riddle [currenti][j] == key) {
-                keys ++;
-                if (keys > 1) {
-                    check = false;
-                } else {
-                    check= true;
+                    }
+
+
                 }
+
+            }
+        }
+
+
+        //Zeilenprüfung
+
+        //obere 3
+
+        if (currenti == 0 || currenti == 1 || currenti == 2) {
+
+            if (currentj <= 2) {
+
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+
+            } else if (currentj > 2 && currentj <= 5) {
+
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 3; j < 6; j++) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+            }else if (currentj > 5) {
+
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 6; j < 9; j++) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+            }else{
+                check = true;
+            }
+        }
+
+        //mittlere 3 Zeilen
+        else if (currenti == 3 || currenti == 4 || currenti == 5) {
+
+            if (currentj <= 2) {
+
+                for (int i = 3; i < 6; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        paint(i, j, key, riddle);
+                    }
+                }
+
+            }else if (currentj > 2 && currentj <= 5) {
+
+                for (int i = 3; i < 6; i++) {
+                    for (int j = 3; j < 6; j++) {
+                        paint(i, j, key, riddle);
+                    }
+                }
+            } else if (currentj > 5) {
+
+                for (int i = 3; i < 6; i++) {
+                    for (int j = 6; j < 9; j++) {
+                        paint(i, j, key, riddle);
+                    }
+                }
+            } else {
+                check = true;
+            }
+        }
+
+        //letzte 3 Zeilen
+        else if (currenti == 6 || currenti == 7 || currenti == 8) {
+
+            if (currentj <= 2) {
+
+                for (int i = 6; i < 9; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+
+            } else if (currentj > 2 && currentj <= 5) {
+
+                for (int i = 6; i < 9; i++) {
+                    for (int j = 3; j < 6; j++) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+            } else if (currentj > 5) {
+
+                for (int i = 6; i < 9; i++) {
+                    for (int j = 6; j < 9; j++) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+            } else {
+                check = true;
+            }
+        }
+
+        //Spaltencheck
+
+
+//linke 3
+
+        if (currenti == 0 || currenti == 3 || currenti == 6) {
+
+            if (currentj == 0 || currentj == 3 || currentj == 6) {
+
+                for (int i = 0; i <= 6; i = i+3) {
+                    for (int j = 0; j <= 6; j = j+3) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+
+            }
+
+            if (currentj == 1 || currentj == 4 || currentj == 7) {
+
+                for (int i = 0; i <= 6; i = i+3) {
+                    for (int j = 1; j <= 7; j = j+3) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+
+            }
+            if (currentj == 2 || currentj == 5 || currentj == 8) {
+
+                for (int i = 0; i <= 6; i = i+3) {
+                    for (int j = 2; j <= 8; j = j+3) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+
+            }
+        }
+
+        //mittlere drei
+        if (currenti == 1 || currenti == 4 || currenti == 7) {
+
+            if (currentj == 0 || currentj == 3 || currentj == 6) {
+
+                for (int i = 1; i <= 7; i = i+3) {
+                    for (int j = 0; j <= 6; j = j+3) {
+                        paint(i, j, key, riddle);
+                    }
+                }
+
+            }
+
+            if (currentj == 1 || currentj == 4 || currentj == 7) {
+
+                for (int i = 1; i <= 7; i = i+3) {
+                    for (int j = 1; j <= 7; j = j+3) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+
+            }
+            if (currentj == 2 || currentj == 5 || currentj == 8) {
+
+                for (int i = 1; i <= 7; i = i+3) {
+                    for (int j = 2; j <= 8; j = j+3) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+
+            }
+        }
+
+        //rechte drei
+        if (currenti == 2 || currenti == 5 || currenti == 8) {
+
+            if (currentj == 0 || currentj == 3 || currentj == 6) {
+
+                for (int i = 2; i <= 8; i = i+3) {
+                    for (int j = 0; j <= 6; j = j+3) {
+                        paint(i, j, key, riddle);
+
+                    }
+                }
+
+            }
+
+            if (currentj == 1 || currentj == 4 || currentj == 7) {
+
+                for (int i = 2; i <= 8; i = i+3) {
+                    for (int j = 1; j <= 7; j = j+3) {
+                        paint(i, j, key, riddle);
+                    }
+                }
+
+            }
+            if (currentj == 2 || currentj == 5 || currentj == 8) {
+
+                for (int i = 2; i <= 8; i = i+3) {
+                    for (int j = 2; j <= 8; j = j+3) {
+                        paint(i, j, key, riddle);
+                    }
+                }
+
             }
         }
 
@@ -26,6 +257,26 @@ public class checkNumber {
 
         //todo in der spalte
 
-    return check;
+return check;
+    }
+
+
+
+
+
+
+    private static void paint(int i, int j, int key, int[][] riddle) {
+        //blaue kästchen umfärben
+        if (gui.alllabels[i][j].getForeground() == Color.BLUE && riddle[i][j] == key) {
+            gui.alllabels[i][j].setForeground(Color.ORANGE);
+        }
+        //Schwarze kästchen umfärben
+        if (gui.alllabels[i][j].getForeground() == Color.BLACK && riddle[i][j] == key) {
+            gui.alllabels[i][j].setForeground(Color.RED);
+        }
+
+
     }
 }
+
+

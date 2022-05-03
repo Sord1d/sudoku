@@ -25,6 +25,8 @@ public class convertKey {
             converted = 8;
         } else if (keychar==57){
             converted = 9;
+        } else if (keychar==8){
+            converted = -1;
         }
 
         return converted;
