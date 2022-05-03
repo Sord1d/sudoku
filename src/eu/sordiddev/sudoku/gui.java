@@ -106,7 +106,22 @@ public class gui {
         MouseListener checklistener = new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            //TODO Überorüfung der Hilfsmatrix
+            //TODO Überprüfung der Hilfsmatrix
+                int check = 0;
+                for (int i = 0; i<9; i++){
+                    for (int j = 0; j<9; j++ ){
+                        if (matrix[i][j] == 1){
+                            check++;
+                            System.out.println(check);
+                        }
+                    }
+                }
+
+                if (check <=81 ){
+                    JOptionPane.showMessageDialog(null,"Schade, das ist leider nicht ganz richtig. Probiere es doch noch ein Mal");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Herzlichen Glückwunsch, du hast das Sudoku gelöst. Deine Zeit ist:"); //TODO Zeit einfügen
+                }
             }
 
             @Override
