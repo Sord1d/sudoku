@@ -7,25 +7,39 @@ public class checkNumber {
 
 
     private static boolean check = true;
+    public static int times = 0;
+    public static int timescombined =0;
 
+
+    //Farbe für differenzierung
+    public static Color BRED = new Color(70, 78, 255, 255);
+
+    
+
+    public static void clearcolor(){
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+
+                if (gui.alllabels[i][j].getForeground() == Color.CYAN) {
+                    gui.alllabels[i][j].setForeground(Color.BLUE);
+                    gui.allpanels[i][j].setBackground(Color.WHITE);
+                } else if(gui.alllabels[i][j].getForeground() == Color.ORANGE) {
+                    gui.alllabels[i][j].setForeground(Color.BLACK);
+                    gui.allpanels[i][j].setBackground(Color.WHITE);
+                }
+
+
+            }
+        }
+    }
 
     public static boolean check(int[][] riddle, int currenti, int currentj, int key) {
 
         //wenn es orange ist wieder blau machen
         //bzw schwarz wenn es rot ist
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
 
-                if (gui.alllabels[i][j].getForeground() == Color.ORANGE) {
-                    gui.alllabels[i][j].setForeground(Color.BLUE);
-                } else if(gui.alllabels[i][j].getForeground() == Color.RED) {
-                    gui.alllabels[i][j].setForeground(Color.BLACK);
-                }
-
-
-            }
-        }
 
         //im kästchen
         int keys = 0;
@@ -35,10 +49,7 @@ public class checkNumber {
                     keys++;
                     if (keys > 1) {
                         paint(currenti, j, key, riddle);
-
                     }
-
-
                 }
 
             }
@@ -52,26 +63,29 @@ public class checkNumber {
         if (currenti == 0 || currenti == 1 || currenti == 2) {
 
             if (currentj <= 2) {
-
+            times = 0;
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
+
                         paint(i, j, key, riddle);
 
                     }
                 }
 
             } else if (currentj > 2 && currentj <= 5) {
-
+                times = 0;
                 for (int i = 0; i < 3; i++) {
                     for (int j = 3; j < 6; j++) {
+
                         paint(i, j, key, riddle);
 
                     }
                 }
             }else if (currentj > 5) {
-
+                times = 0;
                 for (int i = 0; i < 3; i++) {
                     for (int j = 6; j < 9; j++) {
+
                         paint(i, j, key, riddle);
 
                     }
@@ -266,15 +280,26 @@ return check;
 
 
     private static void paint(int i, int j, int key, int[][] riddle) {
-        //blaue kästchen umfärben
-        if (gui.alllabels[i][j].getForeground() == Color.BLUE && riddle[i][j] == key) {
-            gui.alllabels[i][j].setForeground(Color.ORANGE);
+        //blaue kästchen umfärben llerzeichen aussortieren -> -1
+        if (gui.alllabels[i][j].getForeground() == Color.BLUE && riddle[i][j] == key && key != -1) {
+            gui.alllabels[i][j].setForeground(Color.CYAN);
+
+            gui.allpanels[i][j].setBackground(BRED);
+            gui.currentlabel.setForeground(Color.BLUE);
+            gui.currentpanel.setBackground(Color.CYAN);
+
+            timescombined = times;
+
+        }else if (gui.alllabels[i][j].getForeground() == Color.CYAN && riddle[i][j] == key) {
+            gui.allpanels[i][j].setBackground(BRED);
+
+
         }
         //Schwarze kästchen umfärben
         if (gui.alllabels[i][j].getForeground() == Color.BLACK && riddle[i][j] == key) {
-            gui.alllabels[i][j].setForeground(Color.RED);
+            gui.alllabels[i][j].setForeground(Color.ORANGE);
+            gui.allpanels[i][j].setBackground(BRED);
         }
-
 
     }
 }
