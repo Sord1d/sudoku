@@ -3,16 +3,23 @@ package eu.sordiddev.sudoku;
 import javax.swing.*;
 import java.awt.*;
 
-import static eu.sordiddev.sudoku.checkNumber.BRED;
 import static eu.sordiddev.sudoku.checkNumber.clearcolor;
 
 public class printScreen {
 
-
     public printScreen(int key, JLabel currentlabel, JPanel currentpanel, int currenti, int currentj, int[][] riddle) {
+
+        /*
+        Handelt nur, wenn der Vordergrund eines Feldes nicht schwarz oder rot ist.
+        Somit können die fest gesetzten Felder nicht überschrieben werden
+        Setzt den Text des Feldes anschließend auf die eingegeben Zahl.
+        Speichert den eingegebenen Wert im globalen Array.
+        Ein eingegebener Backspace wird mit -1 ausgegeben und somit durch einen Space ersetzt.
+        Im Anschluss werden die Felder mit der Checknumber.java überprüft
+         */
+
         if (currentlabel.getForeground() != Color.BLACK && currentlabel.getForeground()!= Color.red) {
             if (key != 0) {
-
 
                 currentlabel.setText(String.valueOf(key));
                 riddle[currenti][currentj] = key;
@@ -20,23 +27,9 @@ public class printScreen {
                 if (key == -1) {
                     currentlabel.setText("");
                 }
-                //überprüfung ob die Zahl mehr als ein Mal vorhanden ist
+
                 clearcolor();
                 boolean check = checkNumber.check(riddle, currenti, currentj, key);
-                System.out.println("times: "+ checkNumber.timescombined);
-
-                //wenn es orange ist wieder blau machen
-
-                for (int i=0; i<9; i++) {
-                    for (int j = 0; j < 9; j++) {
-                        if (gui.alllabels[i][j].getForeground() == BRED) {
-                            gui.alllabels[i][j].setForeground(Color.RED);
-                        }
-
-                    }
-
-
-                }
 
             }
         }

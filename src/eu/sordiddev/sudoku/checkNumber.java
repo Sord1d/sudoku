@@ -2,7 +2,7 @@ package eu.sordiddev.sudoku;
 
 import java.awt.*;
 
-//Überprüft, ob die zahl vorhanden ist
+
 public class checkNumber {
 
 
@@ -11,16 +11,21 @@ public class checkNumber {
     public static int timescombined =0;
 
 
-    //Farbe für differenzierung
-    public static Color BRED = new Color(70, 78, 255, 255);
+    //Weil die Standardfarben nicht ausreichend sind
+    public static Color NotBlue = new Color(70, 78, 255, 255);
 
     
 
+    /*
+    Die Funktion clearcolor ist für den Reset der Farben nach der Überprüfung verantwortlich:
+    Mithilfe einer For-Schleife werden alle Felder geprüft.
+    Ist eins eingefärbt wird es, je nach Art des Feldes zurückgesetzt, genau wie das zugehörige JPanel.
+    Cyan / Blau -> Dynamische Zahlen
+    Schwarz / Orange -> Vorgegebene Zahlen
+     */
     public static void clearcolor(){
-
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-
                 if (gui.alllabels[i][j].getForeground() == Color.CYAN) {
                     gui.alllabels[i][j].setForeground(Color.BLUE);
                     gui.allpanels[i][j].setBackground(Color.WHITE);
@@ -28,20 +33,18 @@ public class checkNumber {
                     gui.alllabels[i][j].setForeground(Color.BLACK);
                     gui.allpanels[i][j].setBackground(Color.WHITE);
                 }
-
-
             }
         }
     }
 
     public static boolean check(int[][] riddle, int currenti, int currentj, int key) {
 
-        //wenn es orange ist wieder blau machen
-        //bzw schwarz wenn es rot ist
 
-
-
-        //im kästchen
+        /*
+        Überprüfung auf Konflikt im Kästchen:
+        Hierzu wird die Häufigkeit der eingegeben Zahl geprüft im aktuellen rätsel-array.
+        Kommt sie öfter als ein Mal vor, wird das Feld an die paint-funktion übergeben.
+         */
         int keys = 0;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -56,14 +59,17 @@ public class checkNumber {
         }
 
 
-        //Zeilenprüfung
 
-        //obere 3
+        /*
+        Zeilenprüfung (0-3)
+        Gleicht hierzu Labels von vordefinierten Koordinaten mit der Eingabe ab
+        Beginnt mit den ersten Zeilen 0-3. Geht anschließend in die zur Zeile gehörnden Spalten
+         */
 
         if (currenti == 0 || currenti == 1 || currenti == 2) {
 
             if (currentj <= 2) {
-            times = 0;
+
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
 
@@ -95,7 +101,10 @@ public class checkNumber {
             }
         }
 
-        //mittlere 3 Zeilen
+        /*
+        Zeilenprüfung (3-5)
+         */
+
         else if (currenti == 3 || currenti == 4 || currenti == 5) {
 
             if (currentj <= 2) {
@@ -125,7 +134,10 @@ public class checkNumber {
             }
         }
 
-        //letzte 3 Zeilen
+        /*
+        Zeilenprüfung (6-8)
+        */
+
         else if (currenti == 6 || currenti == 7 || currenti == 8) {
 
             if (currentj <= 2) {
@@ -158,10 +170,13 @@ public class checkNumber {
             }
         }
 
-        //Spaltencheck
 
-
-//linke 3
+         /*
+        Spaltenprüfung
+        Gleicht hierzu Labels von vordefinierten Koordinaten mit der Eingabe ab
+        Geht auch in die einzelnen Zeilen, beginneng mit den
+        //TODO WEITER MACHEN
+         */
 
         if (currenti == 0 || currenti == 3 || currenti == 6) {
 
@@ -284,21 +299,21 @@ return check;
         if (gui.alllabels[i][j].getForeground() == Color.BLUE && riddle[i][j] == key && key != -1) {
             gui.alllabels[i][j].setForeground(Color.CYAN);
 
-            gui.allpanels[i][j].setBackground(BRED);
+            gui.allpanels[i][j].setBackground(NotBlue);
             gui.currentlabel.setForeground(Color.BLUE);
             gui.currentpanel.setBackground(Color.CYAN);
 
             timescombined = times;
 
         }else if (gui.alllabels[i][j].getForeground() == Color.CYAN && riddle[i][j] == key) {
-            gui.allpanels[i][j].setBackground(BRED);
+            gui.allpanels[i][j].setBackground(NotBlue);
 
 
         }
         //Schwarze kästchen umfärben
         if (gui.alllabels[i][j].getForeground() == Color.BLACK && riddle[i][j] == key) {
             gui.alllabels[i][j].setForeground(Color.ORANGE);
-            gui.allpanels[i][j].setBackground(BRED);
+            gui.allpanels[i][j].setBackground(NotBlue);
         }
 
     }
