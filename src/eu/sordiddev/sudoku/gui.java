@@ -27,7 +27,8 @@ public class gui {
     private static int currenti;
     private static int currentj;
 
-    private static int[][] riddle = riddles.riddle1();
+    private static int[][] riddle = riddles.riddle();
+    private static int[][] riddlestatic = riddle;
 
 
 
@@ -47,7 +48,7 @@ public class gui {
         JFrame window = new JFrame();
         window.setTitle("Sudoku");
         window.setBackground(Color.WHITE);
-        window.setSize(600,650);
+        window.setSize(600, 650);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setLayout(new BorderLayout());
         KeyListener listener = new KeyListener() {
@@ -55,16 +56,18 @@ public class gui {
             @Override
             public void keyTyped(KeyEvent e) {
             }
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
+
             @Override
             public void keyReleased(KeyEvent e) {
 
                 int keychar = (e.getKeyChar());
                 int key = convertKey.convert(keychar);
 
-                new printScreen(key, currentlabel, currentpanel,currenti, currentj, riddle);
+                new printScreen(key, currentlabel, currentpanel, currenti, currentj, riddle);
 
             }
         };
@@ -84,11 +87,11 @@ public class gui {
         name.setHorizontalAlignment(SwingConstants.CENTER);
         window.add(name, BorderLayout.NORTH);
         JPanel background = new JPanel();
-        background.setLayout(new GridLayout(3,3));
+        background.setLayout(new GridLayout(3, 3));
         window.add(background);
 
         Border borderlarge = BorderFactory.createLineBorder(Color.DARK_GRAY, 3);
-        Border bordersmall = BorderFactory.createLineBorder(Color.DARK_GRAY,1);
+        Border bordersmall = BorderFactory.createLineBorder(Color.DARK_GRAY, 1);
 
 
          /*
@@ -96,12 +99,12 @@ public class gui {
         Zeichnen des Rasters: Den Start macht eine For-Schleife, die passend zum 3*3 Layout des Hintergrundpanels 9 kleinere Panels erzeugt.
           */
 
-        for (int i = 0; i < 9; i++){
-            
+        for (int i = 0; i < 9; i++) {
+
 
             JPanel gridlarge = new JPanel();
             gridlarge.setBorder(borderlarge);
-            gridlarge.setLayout(new GridLayout(3,3));
+            gridlarge.setLayout(new GridLayout(3, 3));
 
          /*
         Erzeugen und kofigurieren des JFrame (3)
@@ -110,25 +113,25 @@ public class gui {
         Anschließend wird der entsprechende Buchstabe des Rätsels geladen und ins Label geschrieben und das Label ins globale Array eingefügt
           */
 
-             for (int j = 0; j <9; j++) {
+            for (int j = 0; j < 9; j++) {
 
-                 JPanel gridsmall = new JPanel();
-                 gridsmall.setBorder(bordersmall);
-                 gridsmall.setBackground(Color.WHITE);
-                 gridsmall.setLayout(new BorderLayout());
+                JPanel gridsmall = new JPanel();
+                gridsmall.setBorder(bordersmall);
+                gridsmall.setBackground(Color.WHITE);
+                gridsmall.setLayout(new BorderLayout());
 
-                 JLabel text= new JLabel();
-                 text.setHorizontalAlignment(SwingConstants.CENTER);
-                 text.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-                 text.setForeground(Color.BLUE);
-                 if ( (int) riddle[i][j] != 0 ) {
+                JLabel text = new JLabel();
+                text.setHorizontalAlignment(SwingConstants.CENTER);
+                text.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+                text.setForeground(Color.BLUE);
+                if ((int) riddle[i][j] != 0) {
 
-                     text.setForeground(Color.BLACK);
-                     text.setText(String.valueOf(riddle[i][j]));
-                 }
+                    text.setForeground(Color.BLACK);
+                    text.setText(String.valueOf(riddle[i][j]));
+                }
 
-                 alllabels[i][j] = text;
-                 gridsmall.add(text, BorderLayout.CENTER);
+                alllabels[i][j] = text;
+                gridsmall.add(text, BorderLayout.CENTER);
 
 
 
@@ -136,69 +139,124 @@ public class gui {
                   Mouse Listener im kleinen Raster:
                   Verantwortlich für Hover-Effekte und Auswahl des Feldes
                   */
-                 int finalI = i;
-                 int finalJ = j;
-                 gridsmall.addMouseListener(new MouseListener() {
-                     @Override
-                     public void mouseClicked(MouseEvent e) {
-                     }
-                     @Override
-                     public void mousePressed(MouseEvent e) {
+                int finalI = i;
+                int finalJ = j;
+                gridsmall.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                    }
 
-                         //Design
-                         if (currentpanel != null) {
-                             currentpanel.setBackground(Color.WHITE);
-                         }
-                         gridsmall.setBackground(Color.cyan);
+                    @Override
+                    public void mousePressed(MouseEvent e) {
 
-                         //Setzt die globalen Werte auf die des aktuellen Feldes
-                         currentlabel = text;
-                         currentpanel = gridsmall;
-                         currenti = finalI;
-                         currentj = finalJ;
+                        //Design
+                        if (currentpanel != null) {
+                            currentpanel.setBackground(Color.WHITE);
+                        }
+                        gridsmall.setBackground(Color.cyan);
 
-                         //Design - Werte werden sowohl in der printScreen.java als auch in der checkNumber.clearcolor verarbeitet.
-                         if (!currentlabel.getText().isEmpty() &&currentlabel.getForeground() != Color.BLACK && currentlabel.getForeground()!= Color.red) {
-                             int key = Integer.parseInt(currentlabel.getText());
-                             clearcolor();
-                             new printScreen(key, currentlabel, currentpanel,currenti, currentj, riddle);
+                        //Setzt die globalen Werte auf die des aktuellen Feldes
+                        currentlabel = text;
+                        currentpanel = gridsmall;
+                        currenti = finalI;
+                        currentj = finalJ;
 
-                         }
+                        //Design - Werte werden sowohl in der printScreen.java als auch in der checkNumber.clearcolor verarbeitet.
+                        if (!currentlabel.getText().isEmpty() && currentlabel.getForeground() != Color.BLACK && currentlabel.getForeground() != Color.red) {
+                            int key = Integer.parseInt(currentlabel.getText());
+                            clearcolor();
+                            new printScreen(key, currentlabel, currentpanel, currenti, currentj, riddle);
 
-                     }
+                        }
 
-                     //Mehr Design: Hover-Effekt
-                     @Override
-                     public void mouseReleased(MouseEvent e) {
-                     }
-                     @Override
-                     public void mouseEntered(MouseEvent e) {
-                         if (gridsmall.getBackground()==Color.WHITE) {
-                             gridsmall.setBackground(Color.LIGHT_GRAY);
-                         }
-                     }
-                     @Override
-                     public void mouseExited(MouseEvent e) {
-                         if (gridsmall.getBackground()== Color.LIGHT_GRAY) {
-                             gridsmall.setBackground(Color.WHITE);
-                         }
+                    }
 
-                     }
-                 });
+                    //Mehr Design: Hover-Effekt
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        if (gridsmall.getBackground() == Color.WHITE) {
+                            gridsmall.setBackground(Color.LIGHT_GRAY);
+                        }
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        if (gridsmall.getBackground() == Color.LIGHT_GRAY) {
+                            gridsmall.setBackground(Color.WHITE);
+                        }
+
+                    }
+                });
                  /*
                  Rest vom Raster wird zu den Panels, bzw. dem Frame hinzugefügt.
                  Die Panels werden im gobalen Array gespeichert.
                   */
-                 gridlarge.add(gridsmall);
-                 allpanels[i][j]=gridsmall;
-             }
+                gridlarge.add(gridsmall);
+                allpanels[i][j] = gridsmall;
+            }
 
             background.add(gridlarge);
         }
 
+
+
+        /*
+        Button für ein neues Sudoku.
+        Holt sich ein rätsel aus der riddles.java und printet es ins Feld.
+         */
+        JPanel newriddle = new JPanel();
+        newriddle.setBackground(Color.WHITE);
+        JLabel newtext = new JLabel("Neues Sudoku");
+        newtext.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
+        MouseListener newlistener = new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                riddle = riddles.riddle();
+                for (int i = 0; i < 9; i++) {
+                    for (int j = 0; j < 9; j++) {
+                        if (riddle[i][j] != 0) {
+                            alllabels[i][j].setText(String.valueOf(riddle[i][j]));
+                            alllabels[i][j].setForeground(Color.BLACK);
+                        } else {
+                            alllabels[i][j].setText("");
+                            alllabels[i][j].setForeground(Color.BLUE);
+                        }
+                        allpanels[i][j].setBackground(Color.WHITE);
+                    }
+                }
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                newtext.setForeground(Color.BLUE);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                newtext.setForeground(Color.BLACK);
+            }
+        };
+        newriddle.add(newtext);
+        newriddle.addMouseListener(newlistener);
+        window.add(newriddle, BorderLayout.SOUTH);
+
+
         window.setVisible(true);
     }
-
 
 
 }
