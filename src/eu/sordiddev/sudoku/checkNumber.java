@@ -11,7 +11,10 @@ public class checkNumber {
     public static int timescombined =0;
 
 
-    //Weil die Standardfarben nicht ausreichend sind
+    /*
+    Weil das normale Blau keinen guten Farbton hat
+     */
+
     public static Color NotBlue = new Color(70, 78, 255, 255);
 
     
@@ -19,10 +22,11 @@ public class checkNumber {
     /*
     Die Funktion clearcolor ist für den Reset der Farben nach der Überprüfung verantwortlich:
     Mithilfe einer For-Schleife werden alle Felder geprüft.
-    Ist eins eingefärbt wird es, je nach Art des Feldes zurückgesetzt, genau wie das zugehörige JPanel.
+    Ist eines eingefärbt, werden das Feld und das zugehörige Panel, je nach Art des Feldes zurückgesetzt:
     Cyan / Blau -> Dynamische Zahlen
     Schwarz / Orange -> Vorgegebene Zahlen
      */
+
     public static void clearcolor(){
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -39,12 +43,12 @@ public class checkNumber {
 
     public static boolean check(int[][] riddle, int currenti, int currentj, int key) {
 
-
         /*
         Überprüfung auf Konflikt im Kästchen:
         Hierzu wird die Häufigkeit der eingegeben Zahl geprüft im aktuellen rätsel-array.
         Kommt sie öfter als ein Mal vor, wird das Feld an die paint-funktion übergeben.
          */
+
         int keys = 0;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -57,8 +61,6 @@ public class checkNumber {
 
             }
         }
-
-
 
         /*
         Zeilenprüfung (0-3)
@@ -84,7 +86,6 @@ public class checkNumber {
                     for (int j = 3; j < 6; j++) {
 
                         paint(i, j, key, riddle);
-
                     }
                 }
             }else if (currentj > 5) {
@@ -97,7 +98,9 @@ public class checkNumber {
                     }
                 }
             }else{
+
                 check = true;
+
             }
         }
 
@@ -199,6 +202,7 @@ public class checkNumber {
                 }
 
             }
+
             if (currentj == 2 || currentj == 5 || currentj == 8) {
 
                 for (int i = 0; i <= 6; i = i+3) {
@@ -237,6 +241,7 @@ public class checkNumber {
                 }
 
             }
+
             if (currentj == 2 || currentj == 5 || currentj == 8) {
 
                 for (int i = 1; i <= 7; i = i+3) {
@@ -275,6 +280,7 @@ public class checkNumber {
                 }
 
             }
+
             if (currentj == 2 || currentj == 5 || currentj == 8) {
 
                 for (int i = 2; i <= 8; i = i+3) {
@@ -287,6 +293,7 @@ public class checkNumber {
         }
 
 return check;
+
     }
 
 
@@ -301,7 +308,9 @@ return check;
     */
 
     private static void paint(int i, int j, int key, int[][] riddle) {
+
         if (gui.alllabels[i][j].getForeground() == Color.BLUE && riddle[i][j] == key && key != -1) {
+
             gui.alllabels[i][j].setForeground(Color.CYAN);
             gui.allpanels[i][j].setBackground(NotBlue);
             gui.currentlabel.setForeground(Color.BLUE);
@@ -309,8 +318,10 @@ return check;
 
 
         } else if (gui.alllabels[i][j].getForeground() == Color.BLACK && riddle[i][j] == key) {
+
             gui.alllabels[i][j].setForeground(Color.ORANGE);
             gui.allpanels[i][j].setBackground(NotBlue);
+
         }
 
     }

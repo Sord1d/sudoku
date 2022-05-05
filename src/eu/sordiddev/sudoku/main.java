@@ -9,6 +9,7 @@ public class main {
     Öffnet mit ein neues GUI-Fenster
     Nutzt dazu die funktion window in der gui.java
      */
+
     gui.window();
 
     }
