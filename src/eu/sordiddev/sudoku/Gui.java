@@ -8,9 +8,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import static eu.sordiddev.sudoku.checkNumber.*;
+import static eu.sordiddev.sudoku.CheckNumber.*;
 
-public class gui {
+public class Gui {
 
     /*
     Initialisiert diverse Objekte.
@@ -25,7 +25,7 @@ public class gui {
 
     private static int currenti;
     private static int currentj;
-    private static int[][] riddle = riddles.riddle();
+    private static int[][] riddle = Riddles.riddle();
 
     /*
     Beginn der eigentlichen GUI-Generierung
@@ -53,9 +53,9 @@ public class gui {
             public void keyReleased(KeyEvent e) {
 
                 int keychar = (e.getKeyChar());
-                int key = convertKey.convert(keychar);
+                int key = ConvertKey.convert(keychar);
 
-                new printScreen(key, currentlabel, currentpanel, currenti, currentj, riddle);
+                new PrintScreen(key, currentlabel, currenti, currentj, riddle);
 
             }
         };
@@ -163,8 +163,8 @@ public class gui {
 
                         if (!currentlabel.getText().isEmpty() && currentlabel.getForeground() != Color.BLACK && currentlabel.getForeground() != Color.red) {
                             int key = Integer.parseInt(currentlabel.getText());
-                            clearcolor();
-                            new printScreen(key, currentlabel, currentpanel, currenti, currentj, riddle);
+                            clearColor();
+                            new PrintScreen(key, currentlabel, currenti, currentj, riddle);
 
                         }
 
@@ -222,7 +222,7 @@ public class gui {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                riddle = riddles.riddle();
+                riddle = Riddles.riddle();
                 for (int i = 0; i < 9; i++) {
                     for (int j = 0; j < 9; j++) {
                         if (riddle[i][j] != 0) {

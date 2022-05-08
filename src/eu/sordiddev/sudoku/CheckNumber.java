@@ -3,7 +3,7 @@ package eu.sordiddev.sudoku;
 import java.awt.*;
 
 
-public class checkNumber {
+public class CheckNumber {
 
 
     private static boolean check = true;
@@ -15,7 +15,7 @@ public class checkNumber {
     Weil das normale Blau keinen guten Farbton hat
      */
 
-    public static Color NotBlue = new Color(70, 78, 255, 255);
+    public static Color NOTBLUE = new Color(70, 78, 255, 255);
 
     
 
@@ -27,15 +27,15 @@ public class checkNumber {
     Schwarz / Orange -> Vorgegebene Zahlen
      */
 
-    public static void clearcolor(){
+    public static void clearColor(){
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (gui.alllabels[i][j].getForeground() == Color.CYAN) {
-                    gui.alllabels[i][j].setForeground(Color.BLUE);
-                    gui.allpanels[i][j].setBackground(Color.WHITE);
-                } else if(gui.alllabels[i][j].getForeground() == Color.ORANGE) {
-                    gui.alllabels[i][j].setForeground(Color.BLACK);
-                    gui.allpanels[i][j].setBackground(Color.WHITE);
+                if (Gui.alllabels[i][j].getForeground() == Color.CYAN) {
+                    Gui.alllabels[i][j].setForeground(Color.BLUE);
+                    Gui.allpanels[i][j].setBackground(Color.WHITE);
+                } else if(Gui.alllabels[i][j].getForeground() == Color.ORANGE) {
+                    Gui.alllabels[i][j].setForeground(Color.BLACK);
+                    Gui.allpanels[i][j].setBackground(Color.WHITE);
                 }
             }
         }
@@ -80,7 +80,7 @@ public class checkNumber {
                     }
                 }
 
-            } else if (currentj > 2 && currentj <= 5) {
+            } else if ( currentj <= 5) {
                 times = 0;
                 for (int i = 0; i < 3; i++) {
                     for (int j = 3; j < 6; j++) {
@@ -88,7 +88,7 @@ public class checkNumber {
                         paint(i, j, key, riddle);
                     }
                 }
-            }else if (currentj > 5) {
+            } else {
                 times = 0;
                 for (int i = 0; i < 3; i++) {
                     for (int j = 6; j < 9; j++) {
@@ -97,11 +97,11 @@ public class checkNumber {
 
                     }
                 }
-            }else{
+            }
 
                 check = true;
 
-            }
+
         }
 
         /*
@@ -118,23 +118,23 @@ public class checkNumber {
                     }
                 }
 
-            }else if (currentj > 2 && currentj <= 5) {
+            }else if ( currentj <= 5) {
 
                 for (int i = 3; i < 6; i++) {
                     for (int j = 3; j < 6; j++) {
                         paint(i, j, key, riddle);
                     }
                 }
-            } else if (currentj > 5) {
+            } else {
 
                 for (int i = 3; i < 6; i++) {
                     for (int j = 6; j < 9; j++) {
                         paint(i, j, key, riddle);
                     }
                 }
-            } else {
-                check = true;
+
             }
+            check = true;
         }
 
         /*
@@ -152,7 +152,7 @@ public class checkNumber {
                     }
                 }
 
-            } else if (currentj > 2 && currentj <= 5) {
+            } else if (currentj <= 5) {
 
                 for (int i = 6; i < 9; i++) {
                     for (int j = 3; j < 6; j++) {
@@ -160,7 +160,7 @@ public class checkNumber {
 
                     }
                 }
-            } else if (currentj > 5) {
+            } else {
 
                 for (int i = 6; i < 9; i++) {
                     for (int j = 6; j < 9; j++) {
@@ -168,9 +168,9 @@ public class checkNumber {
 
                     }
                 }
-            } else {
-                check = true;
             }
+                check = true;
+
         }
 
 
@@ -309,18 +309,18 @@ return check;
 
     private static void paint(int i, int j, int key, int[][] riddle) {
 
-        if (gui.alllabels[i][j].getForeground() == Color.BLUE && riddle[i][j] == key && key != -1) {
+        if (Gui.alllabels[i][j].getForeground() == Color.BLUE && riddle[i][j] == key && key != -1) {
 
-            gui.alllabels[i][j].setForeground(Color.CYAN);
-            gui.allpanels[i][j].setBackground(NotBlue);
-            gui.currentlabel.setForeground(Color.BLUE);
-            gui.currentpanel.setBackground(Color.CYAN);
+            Gui.alllabels[i][j].setForeground(Color.CYAN);
+            Gui.allpanels[i][j].setBackground(NOTBLUE);
+            Gui.currentlabel.setForeground(Color.BLUE);
+            Gui.currentpanel.setBackground(Color.CYAN);
 
 
-        } else if (gui.alllabels[i][j].getForeground() == Color.BLACK && riddle[i][j] == key) {
+        } else if (Gui.alllabels[i][j].getForeground() == Color.BLACK && riddle[i][j] == key) {
 
-            gui.alllabels[i][j].setForeground(Color.ORANGE);
-            gui.allpanels[i][j].setBackground(NotBlue);
+            Gui.alllabels[i][j].setForeground(Color.ORANGE);
+            Gui.allpanels[i][j].setBackground(NOTBLUE);
 
         }
 

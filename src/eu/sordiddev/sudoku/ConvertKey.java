@@ -1,6 +1,6 @@
 package eu.sordiddev.sudoku;
 
-public class convertKey {
+public class ConvertKey {
 
     /*
     Diese Klasse konvertiert die KeyChars aus der Usereingabe in die zugehörigen Zahlen.
@@ -11,6 +11,7 @@ public class convertKey {
     public static int convert(int keychar){
 
         int converted = 0;
+   //TODO Switch + sofort returnen
 
         if (keychar==49){
             converted = 1;

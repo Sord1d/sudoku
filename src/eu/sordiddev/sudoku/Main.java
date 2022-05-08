@@ -1,7 +1,7 @@
 package eu.sordiddev.sudoku;
 
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
 
@@ -10,7 +10,7 @@ public class main {
     Nutzt dazu die funktion window in der gui.java
      */
 
-    gui.window();
+    Gui.window();
 
     }
 }
