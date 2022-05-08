@@ -6,7 +6,7 @@ import java.awt.*;
 public class CheckNumber {
 
 
-    private static boolean check = true;
+
     public static int times = 0;
     public static int timescombined =0;
 
@@ -41,7 +41,7 @@ public class CheckNumber {
         }
     }
 
-    public static boolean check(int[][] riddle, int currenti, int currentj, int key) {
+    public static void check(int[][] riddle, int currenti, int currentj, int key) {
 
         /*
         Überprüfung auf Konflikt im Kästchen:
@@ -88,6 +88,7 @@ public class CheckNumber {
                         paint(i, j, key, riddle);
                     }
                 }
+
             } else {
                 times = 0;
                 for (int i = 0; i < 3; i++) {
@@ -98,8 +99,6 @@ public class CheckNumber {
                     }
                 }
             }
-
-                check = true;
 
 
         }
@@ -125,6 +124,7 @@ public class CheckNumber {
                         paint(i, j, key, riddle);
                     }
                 }
+
             } else {
 
                 for (int i = 3; i < 6; i++) {
@@ -134,7 +134,7 @@ public class CheckNumber {
                 }
 
             }
-            check = true;
+
         }
 
         /*
@@ -169,7 +169,7 @@ public class CheckNumber {
                     }
                 }
             }
-                check = true;
+
 
         }
 
@@ -291,8 +291,6 @@ public class CheckNumber {
 
             }
         }
-
-return check;
 
     }
 

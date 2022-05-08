@@ -5,37 +5,22 @@ public class ConvertKey {
     /*
     Diese Klasse konvertiert die KeyChars aus der Usereingabe in die zugehörigen Zahlen.
     Ein Backspace wird mit -1 angegeben.
-    Nicht erwünschte Eingaben werden ignoriert, und werden somit nicht ins Spielfeld geschrieben
+    Nicht erwünschte Eingaben werden mit -1 ausgegeben
      */
 
     public static int convert(int keychar){
 
-        int converted = 0;
-   //TODO Switch + sofort returnen
-
-        if (keychar==49){
-            converted = 1;
-        } else if (keychar==50){
-            converted = 2;
-        } else if (keychar==51){
-            converted = 3;
-        } else if (keychar==52){
-            converted = 4;
-        }  else if (keychar==53){
-            converted = 5;
-        } else if (keychar==54){
-            converted = 6;
-        } else if (keychar==55){
-            converted = 7;
-        } else if (keychar==56){
-            converted = 8;
-        } else if (keychar==57){
-            converted = 9;
-        } else if (keychar==8){
-            converted = -1;
-        }
-
-        return converted;
-
+        return switch (keychar){
+            case 49 -> 1;
+            case 50 -> 2;
+            case 51 -> 3;
+            case 52 -> 4;
+            case 53 -> 5;
+            case 54 -> 6;
+            case 55 -> 7;
+            case 56 -> 8;
+            case 57 -> 9;
+            default -> -1;
+        };
     }
 }
