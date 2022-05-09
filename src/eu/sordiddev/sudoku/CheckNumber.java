@@ -6,11 +6,6 @@ import java.awt.*;
 public class CheckNumber {
 
 
-
-    public static int times = 0;
-    public static int timescombined =0;
-
-
     /*
     Weil das normale Blau keinen guten Farbton hat
      */
@@ -81,7 +76,7 @@ public class CheckNumber {
                 }
 
             } else if ( currentj <= 5) {
-                times = 0;
+
                 for (int i = 0; i < 3; i++) {
                     for (int j = 3; j < 6; j++) {
 
@@ -90,7 +85,7 @@ public class CheckNumber {
                 }
 
             } else {
-                times = 0;
+
                 for (int i = 0; i < 3; i++) {
                     for (int j = 6; j < 9; j++) {
 
