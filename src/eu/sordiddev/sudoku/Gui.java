@@ -25,7 +25,7 @@ public class Gui {
 
     private static int currenti;
     private static int currentj;
-    private static int[][] riddle = Riddles.riddle();
+    public static int[][] riddle = Riddles.riddle();
 
     /*
     Beginn der eigentlichen GUI-Generierung

@@ -31,11 +31,13 @@ public class PrintScreen {
 
         if (key == -1) {
             currentlabel.setText("");
+            riddle[currenti][currentj] = 0;
         }
 
         clearColor();
 
         CheckNumber.check(riddle, currenti, currentj, key);
+        FinalCheck.check();
 
     }
 
