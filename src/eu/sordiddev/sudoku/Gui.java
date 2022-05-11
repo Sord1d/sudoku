@@ -75,15 +75,19 @@ public class Gui {
         window.setLayout(new BorderLayout());
         window.addKeyListener(keylistener);
 
+        JPanel up = new JPanel();
+        up.setBackground(Color.WHITE);
+
         JLabel name = new JLabel();
         name.setText("Sudoku");
         name.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
-        name.setBackground(Color.WHITE);
         name.setHorizontalAlignment(SwingConstants.CENTER);
 
-        window.add(name, BorderLayout.NORTH);
+        up.add(name);
+        window.add(up, BorderLayout.NORTH);
 
         JPanel background = new JPanel();
+        background.setBackground(Color.WHITE);
         background.setLayout(new GridLayout(3, 3));
 
         window.add(background);
@@ -97,9 +101,10 @@ public class Gui {
 
         for (int i = 0; i < 9; i++) {
 
-            JPanel gridlarge = new JPanel();
-            gridlarge.setBorder(borderlarge);
-            gridlarge.setLayout(new GridLayout(3, 3));
+            JPanel grid = new JPanel();
+            grid.setBorder(borderlarge);
+            grid.setLayout(new GridLayout(3, 3));
+            grid.setBackground(Color.WHITE);
 
          /*
          Nun wird das kleine Raster ebenfalls in einer For-Schleife gezeichnet. Jedes Panel des kleinen Rasters wird mit einem Label ausgestattet.
@@ -108,24 +113,24 @@ public class Gui {
 
             for (int j = 0; j < 9; j++) {
 
-                JPanel gridsmall = new JPanel();
-                gridsmall.setBorder(bordersmall);
-                gridsmall.setBackground(Color.WHITE);
-                gridsmall.setLayout(new BorderLayout());
+                JPanel field = new JPanel();
+                field.setBorder(bordersmall);
+                field.setBackground(Color.WHITE);
+                field.setLayout(new BorderLayout());
 
                 JLabel text = new JLabel();
                 text.setHorizontalAlignment(SwingConstants.CENTER);
                 text.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
                 text.setForeground(Color.BLUE);
 
-                if ((int) riddle[i][j] != 0) {
+                if (riddle[i][j] != 0) {
 
                     text.setForeground(Color.BLACK);
                     text.setText(String.valueOf(riddle[i][j]));
                 }
 
                 alllabels[i][j] = text;
-                gridsmall.add(text, BorderLayout.CENTER);
+                field.add(text, BorderLayout.CENTER);
 
                   /*
                   Mouse Listener im kleinen Raster:
@@ -135,7 +140,7 @@ public class Gui {
                 int finalI = i;
                 int finalJ = j;
 
-                gridsmall.addMouseListener(new MouseListener() {
+                field.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                     }
@@ -154,10 +159,10 @@ public class Gui {
                             currentpanel.setBackground(Color.WHITE);
                         }
 
-                        gridsmall.setBackground(Color.cyan);
+                        field.setBackground(Color.cyan);
 
                         currentlabel = text;
-                        currentpanel = gridsmall;
+                        currentpanel = field;
                         currenti = finalI;
                         currentj = finalJ;
 
@@ -180,15 +185,15 @@ public class Gui {
 
                     @Override
                     public void mouseEntered(MouseEvent e) {
-                        if (gridsmall.getBackground() == Color.WHITE) {
-                            gridsmall.setBackground(Color.LIGHT_GRAY);
+                        if (field.getBackground() == Color.WHITE) {
+                            field.setBackground(Color.LIGHT_GRAY);
                         }
                     }
 
                     @Override
                     public void mouseExited(MouseEvent e) {
-                        if (gridsmall.getBackground() == Color.LIGHT_GRAY) {
-                            gridsmall.setBackground(Color.WHITE);
+                        if (field.getBackground() == Color.LIGHT_GRAY) {
+                            field.setBackground(Color.WHITE);
                         }
 
                     }
@@ -199,12 +204,12 @@ public class Gui {
                  Die Panels werden im gobalen Array gespeichert.
                   */
 
-                gridlarge.add(gridsmall);
-                allpanels[i][j] = gridsmall;
+                grid.add(field);
+                allpanels[i][j] = field;
 
             }
 
-            background.add(gridlarge);
+            background.add(grid);
         }
 
         /*

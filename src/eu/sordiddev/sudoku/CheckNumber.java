@@ -127,7 +127,6 @@ public class CheckNumber {
                         paint(i, j, key, riddle);
                     }
                 }
-
             }
 
         }

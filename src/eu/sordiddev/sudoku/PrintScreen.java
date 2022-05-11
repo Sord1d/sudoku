@@ -34,7 +34,7 @@ public class PrintScreen {
             riddle[currenti][currentj] = 0;
         }
 
-        clearColor();
+        CheckNumber.clearColor();
 
         CheckNumber.check(riddle, currenti, currentj, key);
         FinalCheck.check();
