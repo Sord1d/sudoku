@@ -166,7 +166,7 @@ public class Gui {
                         currenti = finalI;
                         currentj = finalJ;
 
-                        if (!currentlabel.getText().isEmpty() && currentlabel.getForeground() != Color.BLACK && currentlabel.getForeground() != Color.red) {
+                        if (!currentlabel.getText().isEmpty() && currentlabel.getForeground() != Color.BLACK) {
                             int key = Integer.parseInt(currentlabel.getText());
                             clearColor();
                             new PrintScreen(key, currentlabel, currenti, currentj, riddle);
