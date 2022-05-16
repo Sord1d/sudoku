@@ -33,12 +33,12 @@ public class FinalCheck {
                 sum = sum + Gui.riddle[i][j];
             }
             if (sum != 45) {
-                JOptionPane.showMessageDialog(null, "Deine Lösung ist falsch, probiere es doch noch einmal");
+                JOptionPane.showMessageDialog(null, "Sorry, this solution is wrong. Please try again.");
                 return;
             }
         }
 
-       JOptionPane.showMessageDialog(null,"Herzlichen Glückwunsch, du hast das Sudoku erfolgreich gelöst");
+       JOptionPane.showMessageDialog(null,"Congratulations. You have solved the sudoku successfully.");
 
 
     }

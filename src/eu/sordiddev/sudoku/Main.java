@@ -9,7 +9,7 @@ public class Main {
     Öffnet mit ein neues GUI-Fenster
     Nutzt dazu die funktion window in der gui.java
      */
-
+//TODO: Translate to english
     Gui.window();
 
     }

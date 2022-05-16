@@ -220,7 +220,7 @@ public class Gui {
         JPanel newriddle = new JPanel();
         newriddle.setBackground(Color.WHITE);
 
-        JLabel newtext = new JLabel("Neues Sudoku");
+        JLabel newtext = new JLabel("New Sudoku");
         newtext.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
 
         MouseListener newlistener = new MouseListener() {
