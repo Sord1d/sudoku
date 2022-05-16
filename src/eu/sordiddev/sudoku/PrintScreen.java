@@ -18,7 +18,7 @@ public class PrintScreen {
         Im Anschluss werden die Felder mit der Checknumber.java überprüft
          */
 
-        if (currentlabel.getForeground() == Color.BLACK || currentlabel.getForeground() == Color.red) {
+        if (currentlabel.getForeground() == Color.BLACK || currentlabel.getForeground() == Color.orange) {
             return;
         }
 
