@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) {
 
     /*
-    Öffnet mit ein neues GUI-Fenster
-    Nutzt dazu die funktion window in der gui.java
+    Will open a new window
+    Uses the window function in the gui.java
      */
 //TODO: Translate to english
     Gui.window();

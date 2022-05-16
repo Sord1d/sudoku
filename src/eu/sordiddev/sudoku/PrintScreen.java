@@ -3,7 +3,7 @@ package eu.sordiddev.sudoku;
 import javax.swing.*;
 import java.awt.*;
 
-import static eu.sordiddev.sudoku.CheckNumber.clearColor;
+//TODO Translate
 
 public class PrintScreen {
 

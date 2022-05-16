@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class CheckNumber {
 
-
+//TODO Translate
     /*
     Weil das normale Blau keinen guten Farbton hat
      */

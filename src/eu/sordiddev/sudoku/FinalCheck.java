@@ -8,8 +8,8 @@ public class FinalCheck {
         int sum;
 
         /*
-        Abbruchbedingung:
-        Wenn ein Feld 0 ist, wird die Methode nicht weiter ausgeführt
+        If a field in the array equals zero the sudoku isn't solved completely.
+        Therefore, we don't need to continue to check the checksum.
          */
 
         for (int i = 0; i< 9; i++){
@@ -21,9 +21,12 @@ public class FinalCheck {
         }
 
         /*
-        Rechnet die Prüfsumme der Kästchen aus:
-        Da in jedem Kästchen jede Zahl von 1-9 vorhanden sein muss, ist die Prüfsumme 45
-        Wenn die Prüfsumme für jedes Kästchen 45 ist, wird der Gewinn-Dialog ausgegeben
+        Will calculate the checksum of every 3*3 field:
+        Because every field should contain the numbers 1-9 the checksum should be 45.
+        Technically you could cheat and "win" as long as every number is in a field, but come on:
+        Conflicting entries are marked, no-one should be that dumb. Right? I mean - Right? :'D
+        If the checksum isn't 45 the function will be aborted and a message dialog (that try again thingy) will be shown.
+        Otherwise, the user will see a message dialog that he won the game.
          */
 
         for (int i = 0; i< 9; i++) {
@@ -33,7 +36,7 @@ public class FinalCheck {
                 sum = sum + Gui.riddle[i][j];
             }
             if (sum != 45) {
-                JOptionPane.showMessageDialog(null, "Sorry, this solution is wrong. Please try again.");
+                JOptionPane.showMessageDialog(null, "Sorry, this solution is incorrect. Please try again.");
                 return;
             }
         }

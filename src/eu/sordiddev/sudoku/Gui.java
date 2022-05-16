@@ -11,7 +11,7 @@ import java.awt.event.MouseListener;
 import static eu.sordiddev.sudoku.CheckNumber.*;
 
 public class Gui {
-
+//TODO Translate
     /*
     Initialisiert diverse Objekte.
     Diese dienen als Zwischenspeicher

@@ -77,8 +77,8 @@ public class Riddles {
     public static int[][] riddle() {
 
         /*
-        Erzeugt ein Zufalls-Int von 0-4
-        Übergibt anschließend das entsprechende Räsel
+        Will define a random int from 0-4
+        Will return  the riddle above corresponding to the random number
          */
 
         int random = new Random().nextInt(5);

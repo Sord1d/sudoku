@@ -3,9 +3,9 @@ package eu.sordiddev.sudoku;
 public class ConvertKey {
 
     /*
-    Diese Klasse konvertiert die KeyChars aus der Usereingabe in die zugehörigen Zahlen.
-    Ein Backspace wird mit -1 angegeben.
-    Nicht erwünschte Eingaben werden mit 0 zurückgegeben und somit in der printcreen ignoniert
+    This function converts the KeyChars provided by the user into the corresponding number.
+    A backspace will be returned with -1.
+    Invalid inputs will be returned with 0 and will be ignored.
      */
 
     public static int convert(int keychar){
