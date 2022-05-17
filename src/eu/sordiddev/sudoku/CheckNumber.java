@@ -5,9 +5,9 @@ import java.awt.*;
 
 public class CheckNumber {
 
-//TODO Translate
+
     /*
-    Weil das normale Blau keinen guten Farbton hat
+    Because Color.BLUE sucks.
      */
 
     public static Color NOTBLUE = new Color(70, 78, 255, 255);
@@ -15,11 +15,11 @@ public class CheckNumber {
     
 
     /*
-    Die Funktion clearcolor ist für den Reset der Farben nach der Überprüfung verantwortlich:
-    Mithilfe einer For-Schleife werden alle Felder geprüft.
-    Ist eines eingefärbt, werden das Feld und das zugehörige Panel, je nach Art des Feldes zurückgesetzt:
-    Cyan / Blau -> Dynamische Zahlen
-    Schwarz / Orange -> Vorgegebene Zahlen
+    clearColor resets the colors that might have been changed by the check-
+    Every field will be checked using a for-loop.
+    When a panel is blue it and its label will be reset:
+    Cyan / blue -> dynamic numbers
+    black / blue -> static numbers
      */
 
     public static void clearColor(){
@@ -39,9 +39,8 @@ public class CheckNumber {
     public static void check(int[][] riddle, int currenti, int currentj, int key) {
 
         /*
-        Überprüfung auf Konflikt im Kästchen:
-        Hierzu wird die Häufigkeit der eingegeben Zahl geprüft im aktuellen rätsel-array.
-        Kommt sie öfter als ein Mal vor, wird das Feld an die paint-funktion übergeben.
+        Checks for conflict in the grid:
+        If the input number (key) exists more than once the field will be marked using the paint function
          */
 
         int keys = 0;
@@ -58,9 +57,7 @@ public class CheckNumber {
         }
 
         /*
-        Zeilenprüfung (0-3)
-        Gleicht hierzu Labels von vordefinierten Koordinaten mit der Eingabe ab
-        Beginnt mit den ersten Zeilen 0-3. Geht anschließend in die zur Zeile gehörnden Spalten
+        Checks lines 0-3
          */
 
         if (currenti == 0 || currenti == 1 || currenti == 2) {
@@ -99,7 +96,7 @@ public class CheckNumber {
         }
 
         /*
-        Zeilenprüfung (3-5)
+        Checks lines (3-5)
          */
 
         else if (currenti == 3 || currenti == 4 || currenti == 5) {
@@ -132,7 +129,7 @@ public class CheckNumber {
         }
 
         /*
-        Zeilenprüfung (6-8)
+        Checks lines (6-8)
         */
 
         else if (currenti == 6 || currenti == 7 || currenti == 8) {
@@ -169,8 +166,7 @@ public class CheckNumber {
 
 
          /*
-        Spaltenprüfung (0,3,6)
-        Gleicht hierzu Labels von vordefinierten Koordinaten von Spalten / zeilen des Arrays mit der Eingabe ab
+        Checks columns (0,3,6)
          */
 
         if (currenti == 0 || currenti == 3 || currenti == 6) {
@@ -210,9 +206,8 @@ public class CheckNumber {
         }
 
          /*
-        Spaltenprüfung (1,4,7)
-        Gleicht hierzu Labels von vordefinierten Koordinaten von Spalten / zeilen des Arrays mit der Eingabe ab
-         */
+        Checks columns (1,4,7)
+          */
         if (currenti == 1 || currenti == 4 || currenti == 7) {
 
             if (currentj == 0 || currentj == 3 || currentj == 6) {
@@ -249,8 +244,7 @@ public class CheckNumber {
         }
 
          /*
-        Spaltenprüfung (2,8,8)
-        Gleicht hierzu Labels von vordefinierten Koordinaten von Spalten / zeilen des Arrays mit der Eingabe ab
+         Checks columns (2,5,8)
          */
         if (currenti == 2 || currenti == 5 || currenti == 8) {
 
@@ -293,10 +287,9 @@ public class CheckNumber {
 
 
     /*
-   Design der Prüfung:
-   Das übermittelte Label wird, falls die Schriftfarbe blau ist, cyan/Blau (NotBlue) eingefärbt.
-   Das aktuelle Feld bekommt einen cyan hintergrund.
-   Anschließend werden die schwarzen Felder in Orange / Blau eingefärbt
+   Paints the received field cyan/blue (notblue) if the text is blue
+   When the text is back, the field will be painted orange/blue (notblue)
+   The current field will be painted cyan/blue
     */
 
     private static void paint(int i, int j, int key, int[][] riddle) {

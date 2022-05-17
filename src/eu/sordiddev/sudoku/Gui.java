@@ -151,7 +151,7 @@ public class Gui {
 
                         /*
                         Selecting a field:
-                        If a field has been selected prior to the new one it's color will be resetted to white.
+                        If a field has been selected prior to the new one it's color will be reset to white.
                         After that the global variables will  be set to new field and its label.
                         Then the printscreen will check for conflicting fields.
                          */
