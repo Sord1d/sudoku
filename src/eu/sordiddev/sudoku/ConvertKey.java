@@ -8,6 +8,7 @@ public class ConvertKey {
     Invalid inputs will be returned with 0 and will be ignored.
      */
 
+
     public static int convert(int keychar){
 
         return switch (keychar){

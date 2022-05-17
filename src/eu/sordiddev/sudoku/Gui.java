@@ -11,11 +11,10 @@ import java.awt.event.MouseListener;
 import static eu.sordiddev.sudoku.CheckNumber.*;
 
 public class Gui {
-//TODO Translate
+
     /*
-    Initialisiert diverse Objekte.
-    Diese dienen als Zwischenspeicher
-    Rätsel werden aus der riddles.java geladen
+    Initializes objects that are used vor accessing the fields
+    Riddles are stored in the riddles.java
      */
 
     public static JLabel currentlabel;
@@ -28,15 +27,15 @@ public class Gui {
     public static int[][] riddle = Riddles.riddle();
 
     /*
-    Beginn der eigentlichen GUI-Generierung
+    This is where gui generation starts
      */
 
     public static void window() {
 
         /*
-        Definition der Listener:
-        Der KeyListener- ist für die Usereingabe verantwortlich:
-        Er konvertiert die KeyChars mit Hilfe der convertKey.java in die eingegebene Zahl, die anschließend ins Feld eingetragen wird.
+        Definition of the listeners:
+        The KeyListener manages the user's input:
+        It converts the KeyChars using the convertKey.java.
          */
 
         KeyListener keylistener = new KeyListener() {
@@ -61,10 +60,9 @@ public class Gui {
         };
 
         /*
-        Erzeugen und kofigurieren des JFrame
-        Label mit dem Namen wird erstellt und konifguriert.
-        Ein neues JPanel wird als hintergrund angelegt und mit einem Layout ausgestattet.
-        Zwei Borders werden erstellt.
+        Creation of the JFrame
+        The upper label is being created and is added to a panel
+        Also two borders are created
           */
 
         JFrame window = new JFrame();
@@ -96,7 +94,9 @@ public class Gui {
         Border bordersmall = BorderFactory.createLineBorder(Color.DARK_GRAY, 1);
 
          /*
-        Zeichnen des Rasters: Den Start macht eine For-Schleife, die passend zum 3*3 Layout des Hintergrundpanels 9 kleinere Panels erzeugt.
+        Creation of the grid:
+        We'll start with a for-loop that creates 9 small panels
+        (because the background has a 3*3 GridLayout)
           */
 
         for (int i = 0; i < 9; i++) {
@@ -107,8 +107,9 @@ public class Gui {
             grid.setBackground(Color.WHITE);
 
          /*
-         Nun wird das kleine Raster ebenfalls in einer For-Schleife gezeichnet. Jedes Panel des kleinen Rasters wird mit einem Label ausgestattet.
-        Anschließend wird der entsprechende Buchstabe des Rätsels geladen, ins Label geschrieben und das Label ins globale Array eingefügt
+        Now we'll create each field and a corresponding label.
+        The number of the fields will be taken from our riddle array.
+        It'll be the label's text (if it's not 0)
           */
 
             for (int j = 0; j < 9; j++) {
@@ -133,8 +134,8 @@ public class Gui {
                 field.add(text, BorderLayout.CENTER);
 
                   /*
-                  Mouse Listener im kleinen Raster:
-                  Verantwortlich für Hover-Effekte und Auswahl des Feldes
+                  Mouse Listener for each field:
+                  Manages hover animations and field selection
                   */
 
                 int finalI = i;
@@ -149,10 +150,10 @@ public class Gui {
                     public void mousePressed(MouseEvent e) {
 
                         /*
-                        Ablauf für die Feldauswahl:
-                        Falls vorhanden wird das vorherige Feld auf weiß gefärbt und das aktuelle  cyan.
-                        Anschließend wird das neu ausgewählte Feld und dessen Werte in die globalen Variablen geschrieben.
-                        Zuletzt wird die überprüfung der Zahl mithilfe der printScreen durchgeführt.
+                        Selecting a field:
+                        If a field has been selected prior to the new one it's color will be resetted to white.
+                        After that the global variables will  be set to new field and its label.
+                        Then the printscreen will check for conflicting fields.
                          */
 
                         if (currentpanel != null) {
@@ -180,7 +181,7 @@ public class Gui {
                     }
 
                     /*
-                    Hier folgt die Hover-Animation
+                    Hover Stuff
                      */
 
                     @Override
@@ -200,8 +201,8 @@ public class Gui {
                 });
 
                  /*
-                 Rest vom Raster wird zu den Panels, bzw. dem Frame hinzugefügt.
-                 Die Panels werden im gobalen Array gespeichert.
+                 The field is added to the grid
+                 The panels are added to a global array
                   */
 
                 grid.add(field);
@@ -213,8 +214,8 @@ public class Gui {
         }
 
         /*
-        Button für ein neues Sudoku.
-        Holt sich ein rätsel aus der riddles.java und printet es ins Feld.
+        Button for loading a ne sudoku
+        Gets a riddle from the riddle.java and prints it to the field
          */
 
         JPanel newriddle = new JPanel();
