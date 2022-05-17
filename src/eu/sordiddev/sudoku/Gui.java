@@ -134,7 +134,7 @@ public class Gui {
                 field.add(text, BorderLayout.CENTER);
 
                   /*
-                  Mouse Listener for each field:
+                  MouseListener for each field:
                   Manages hover animations and field selection
                   */
 
@@ -214,7 +214,7 @@ public class Gui {
         }
 
         /*
-        Button for loading a ne sudoku
+        Button for loading a new sudoku
         Gets a riddle from the riddle.java and prints it to the field
          */
 
