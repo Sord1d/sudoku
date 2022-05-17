@@ -21,5 +21,5 @@ It has the following **features**:
   
 ![sudoku image](https://sordiddev.eu/sudoku2.png)
  
-![sudoku image](https://sordiddev.eu/sudoku1.png)
+![sudoku image](https://sordiddev.eu/sudoku3.png)
 
