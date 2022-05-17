@@ -18,5 +18,8 @@ It has the following **features**:
  
  **Screenshots**
  
+  
+![sudoku image](https://sordiddev.eu/sudoku2.png)
+ 
 ![sudoku image](https://sordiddev.eu/sudoku1.png)
 
