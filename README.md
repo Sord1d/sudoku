@@ -1,6 +1,3 @@
-
-![sudoku image](https://sordiddev.eu/sudoku1.png)
-
 # sord1d/sudoku
 
 
@@ -17,5 +14,9 @@ It has the following **features**:
 
  - [ ] When you switch a riddle that's half finished it won't be resetted when it's chosen again
  - [ ] More sudokus will be added
+ - [ ] Implement a dark mode
  
+ **Screenshots**
+ 
+![sudoku image](https://sordiddev.eu/sudoku1.png)
 
