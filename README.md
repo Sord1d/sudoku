@@ -12,7 +12,7 @@ It has the following **features**:
 
 **To-do-list / known bugs**
 
- - [ ] When you switch a riddle that's half finished it won't be resetted when it's chosen again
+ - [ ] When you switch a riddle that's half finished it won't be reset when it's chosen again
  - [ ] More sudokus will be added
  - [ ] Implement a dark mode
  
